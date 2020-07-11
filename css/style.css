@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat Regular";
+  font-size: 14px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: block;
+}
+
+.main-logo {
+  height: 40px;
+  width: 106px;
+  display: inline-block;
+  margin: 15px 0 15px 0;
+}
+
+.header__content {
+  float: right;
+  padding: 15px 0 0 0;
+}
+
+.header__holder::after{
+  content:"";
+  clear:both;
+  display:block;
+}
+
+.header__buttons {
+  display: inline-block;
+}
+
+.header__signin {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.header__page-menu {
+  display: inline-block;
+}
+
+.header__page-menu ul {
+  display: inline-block;
+}
+
+.header__page-menu li {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.header__signin {
+  display: inline-block;
+  border: 2px solid #bc9cff;
+  border-radius: 22px;
+  padding: 9px 20px 9px 20px;
+  color: #bc9cff;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.header__signin a {
+  display: inline-block;
+  color: #bc9cff;
+  font-family: "Montserrat Bold";
+  font-size: 12px;
+}
+
+.header__signup {
+  display: inline-block;
+  color: white;
+  background-color: #bc9cff;
+  font-family: "Montserrat Bold";
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 22px;
+  padding: 9px 20px 9px 20px;
+}
+
+.header__signup a {
+  display: inline-block;
+  color: white;
+  font-family: "Montserrat Bold";
+  font-size: 12px;
+}
+
+.slider {
+  background-image: url("../img/home__background.png");
+  background-position: -46px -151px;
+  background-size:1534px 1022px;
+  background-repeat: no-repeat;
+  min-height: 830px;
+  max-width: 1440px;
+  width:100%;
+  margin: 0 auto;
+}
+
+
+.slider__search-room-form{
+  display:inline-block;
+  position: relative;
+  width:380px;
+  height:374px;
+  top:70px;
+  background-color: cornsilk;
+}
+
+.slider__text{
+  position: relative;
+  top:764px;
+  float: right;
+  line-height: 24px;
+  text-align: right;
+  color: rgba(31, 32, 65, 0.75);
+}

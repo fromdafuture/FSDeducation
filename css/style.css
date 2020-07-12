@@ -7,6 +7,10 @@
   color: rgba(31, 32, 65, 0.5);
 }
 
+html {
+  margin: 0 auto;
+}
+
 a {
   text-decoration: none;
   display: inline-block;
@@ -34,10 +38,10 @@ li {
   padding: 15px 0 0 0;
 }
 
-.header__holder::after{
-  content:"";
-  clear:both;
-  display:block;
+.header__holder::after {
+  content: "";
+  clear: both;
+  display: block;
 }
 
 .header__buttons {
@@ -48,6 +52,7 @@ li {
   margin-left: 20px;
   margin-right: 20px;
 }
+
 .header__page-menu {
   display: inline-block;
 }
@@ -67,19 +72,18 @@ li {
   border-radius: 22px;
   padding: 9px 20px 9px 20px;
   color: #bc9cff;
-
   text-transform: uppercase;
   text-align: center;
 }
 
 .header__signin a {
-  display: inline-block;
   color: #bc9cff;
   font-family: "Montserrat Bold";
   font-size: 12px;
 }
 
 .header__signup {
+  height: 100%;
   display: inline-block;
   color: white;
   background-color: #bc9cff;
@@ -88,11 +92,10 @@ li {
   text-transform: uppercase;
   text-align: center;
   border-radius: 22px;
-  padding: 9px 20px 9px 20px;
+  padding: 12px 20px 11px 20px;
 }
 
 .header__signup a {
-  display: inline-block;
   color: white;
   font-family: "Montserrat Bold";
   font-size: 12px;
@@ -101,29 +104,128 @@ li {
 .slider {
   background-image: url("../img/home__background.png");
   background-position: -46px -151px;
-  background-size:1534px 1022px;
+  background-size: 1534px 1022px;
   background-repeat: no-repeat;
   min-height: 830px;
   max-width: 1440px;
-  width:100%;
+  width: 100%;
   margin: 0 auto;
 }
 
-
-.slider__search-room-form{
-  display:inline-block;
+.slider__search-room-form {
+  display: inline-block;
   position: relative;
-  width:380px;
-  height:374px;
-  top:70px;
-  background-color: cornsilk;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  width: 380px;
+  height: 374px;
+  top: 70px;
+  background-color: white;
 }
 
-.slider__text{
+.slider__text {
   position: relative;
-  top:764px;
+  top: 764px;
   float: right;
   line-height: 24px;
   text-align: right;
   color: rgba(31, 32, 65, 0.75);
+}
+
+.slider__rooomsearcher label {
+  text-transform: uppercase;
+  font-family: "Montserrat Bold";
+  color: #1f2041;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.slider__rooomsearcher input {
+  font-family: "Montserrat Regular";
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.slider__rooomsearcher {
+  padding: 40px 30px 0 30px;
+}
+
+.form__caption {
+  display: block;
+  font-size: 24px;
+  line-height: 30px;
+  font-family: "Montserrat Bold";
+  color: #1f2041;
+  margin-bottom: 20px;
+}
+
+.form__income input,
+.form__outcome input,
+.form__qua select {
+  width: 150px;
+  height: 44px;
+  padding-left: 15px;
+  text-transform: uppercase;
+  background: #ffffff;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.form__income,
+.form__outcome {
+  width: 150px;
+  display: inline-block;
+}
+
+.form__outcome {
+  float: right;
+}
+
+.clear::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.form__qua {
+  margin-top: 20px;
+  display: block;
+}
+
+.form__qua select {
+  width: 320px;
+}
+
+.form__submit {
+  position: relative;
+  box-sizing: border-box;
+  margin: 31px auto 0 auto;
+  display: block;
+  width: 320px;
+  height: 44px;
+  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  border-radius: 22px;
+
+  font-family: "Montserrat Bold";
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+}
+
+
+.form__submit::after{
+  position: absolute;
+  right:14px;
+  top:14px;
+  font-family: 'icomoon';
+  content: "\ea3c";
+  font-size: 20px;
 }

@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href=".\css\fonts_ico.css" />
     <link rel="stylesheet" href=".\css\fonts.css" />
     <link rel="stylesheet" href=".\css\style.css" />
 
     <title>Document</title>
   </head>
+
   <body>
     <header class="header">
       <div class="container">
         <div class="header__holder">
-
           <div class="main-logo">
             <a href="#">
               <img src="./img/logo.svg" alt="TOXIN" />
@@ -29,6 +30,7 @@
                 <li><a href="#">Соглашения</a></li>
               </ul>
             </nav>
+
             <div class="header__buttons">
               <div class="header__signin">
                 <a href="#">войти</a>
@@ -44,13 +46,43 @@
 
     <section class="slider">
       <div class="container">
-          <div class="slider__search-room-form">
-
-          </div>
-          <div class="slider__text">
-Лучшие номера для вашей работы,<br> отдыха и просто вдохновения
-
-          </div>
+        <div class="slider__search-room-form">
+          <form action="" class="slider__rooomsearcher">
+            <div class="form__caption">
+              Найдем номера под ваши пожелания
+            </div>
+            <div class="clear">
+              <label class="form__income">
+                Прибытие
+                <input type="date" />
+              </label>
+              <label class="form__outcome">
+                Выезд
+                <input type="date" />
+              </label>
+            </div>
+            <label class="form__qua">
+              Гости
+              <select  value="1">
+                <div class="smth" style="display:block;">sfdsdfsfsd</div>
+                <option value="1">
+                  
+                  <div class="smth" style="display:block; background-color: blue;">Вариант</div>
+                
+                
+                </option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+              </select>
+            </label>
+            <button class="form__submit" type="submit">Подобрать номер</button>
+          </form>
+        </div>
+        <div class="slider__text">
+          Лучшие номера для вашей работы,<br />
+          отдыха и просто вдохновения
+        </div>
       </div>
     </section>
   </body>

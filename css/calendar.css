@@ -1,0 +1,31 @@
+.container {
+  display: block;
+  width: 600px;
+  height: 500px;
+  margin: 50px auto;
+
+  border-radius: 10px;
+  background-color: rgba(240, 211, 211, 0.1);
+  box-shadow: 0 4px 16px #ccc;
+overflow: auto;
+}
+
+#calendar-holder {
+    box-sizing: border-box;
+  width: 320px;
+  height: 369px;
+
+  margin: 50px auto;
+  padding-top: 1px;
+    border: 1px solid white;
+
+  border-radius: 10px;
+  background-color: rgba(240, 211, 211, 0.1);
+  box-shadow: 0 4px 16px #ccc;
+}
+
+
+#calendar-holder:before {
+    clear:both;
+    content:" ";
+}

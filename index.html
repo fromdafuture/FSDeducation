@@ -24,10 +24,10 @@
             <nav class="header__page-menu">
               <ul>
                 <li><a href="#">О нас</a></li>
-                <li><a href="#">Услуги</a></li>
+                <li><a href="#" class="header__services">Услуги</a></li>
                 <li><a href="#">Вакансии</a></li>
                 <li><a href="#">Новости</a></li>
-                <li><a href="#">Соглашения</a></li>
+                <li><a href="#" class="header__agreements">Соглашения</a></li>
               </ul>
             </nav>
 
@@ -47,11 +47,11 @@
     <section class="slider">
       <div class="container">
         <div class="slider__search-room-form">
-          <form action="" class="slider__rooomsearcher">
+          <form action="" class="slider__form">
             <div class="form__caption">
-              Найдем номера под ваши пожелания
+              Найдём номера под ваши пожелания
             </div>
-            <div class="clear">
+            <div class="form__in-out-container">
               <label class="form__income">
                 Прибытие
                 <input type="date" />
@@ -61,20 +61,16 @@
                 <input type="date" />
               </label>
             </div>
-            <label class="form__qua">
+            <label class="form__guest-quantity">
               Гости
-              <select  value="1">
-                <div class="smth" style="display:block;">sfdsdfsfsd</div>
-                <option value="1">
-                  
-                  <div class="smth" style="display:block; background-color: blue;">Вариант</div>
-                
-                
-                </option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-              </select>
+              <div class="select-wrapper">
+                <select>
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                </select>
+              </div>
             </label>
             <button class="form__submit" type="submit">Подобрать номер</button>
           </form>
@@ -85,5 +81,69 @@
         </div>
       </div>
     </section>
+
+    <div class="footer">
+      <div class="container">
+        <div class="footer__widgets">
+          <div class="footer__adverticement">
+            <div class="main-logo">
+              <a href="#">
+                <img src="./img/logo.svg" alt="TOXIN" />
+              </a>
+            </div>
+
+            <div class="footer__adverticement-text">
+              Бронирование номеров в лучшем отеле 2019 года по версии ассоциации
+              «Отельные взгляды»
+            </div>
+          </div>
+          <div class="footer__navigation">
+            <h3>Навигация</h3>
+            <ul>
+              <li>О нас</li>
+              <li>Новости</li>
+              <li>Служба поддержки</li>
+              <li>Услуги</li>
+            </ul>
+          </div>
+          <div class="footer__about">
+            <h3>О нас</h3>
+            <ul>
+              <li>О сервисе</li>
+              <li>Наша команда</li>
+              <li>Вакансии</li>
+              <li>Инвесторы</li>
+            </ul>
+          </div>
+          <div class="footer__support">
+            <h3>Служба поддержки</h3>
+            <ul>
+              <li>Соглашение</li>
+              <li>Сообщества</li>
+              <li>Связь с нами</li>
+            </ul>
+          </div>
+          <div class="footer__subscribe">
+            <h3>Подписка</h3>
+            <div class="footer__subscribe-text">
+              Получайте специальные предложения и новости сервиса
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__copyright">
+        <div class="container">
+          <div class="footer__copyright-inner">
+            Copyright © 2018 Toxin отель. Все права зачищены.
+          </div>
+
+          <div class="footer__media">
+            <span class="twitter">dfgdfg</span>
+            <span class="facebook">fdgdf</span>
+            <span class="instagramm">dfgdfg</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

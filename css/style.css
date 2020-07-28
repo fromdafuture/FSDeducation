@@ -20,6 +20,13 @@ li {
   list-style: none;
 }
 
+h3 {
+  font-family: "Montserrat Bold";
+  font-size: 12px;
+  line-height: 15px;
+  color: #1f2041;
+}
+
 .container {
   max-width: 1160px;
   margin: 0 auto;
@@ -30,12 +37,17 @@ li {
   height: 40px;
   width: 106px;
   display: inline-block;
+}
+.main-logo img {
+  vertical-align: top;
+}
+.header__holder .main-logo {
   margin: 15px 0 15px 0;
 }
 
 .header__content {
   float: right;
-  padding: 15px 0 0 0;
+  padding: 18px 0 0 0;
 }
 
 .header__holder::after {
@@ -48,13 +60,9 @@ li {
   display: inline-block;
 }
 
-.header__signin {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .header__page-menu {
   display: inline-block;
+  margin-right: 18px;
 }
 
 .header__page-menu ul {
@@ -63,42 +71,59 @@ li {
 
 .header__page-menu li {
   display: inline-block;
-  padding-right: 20px;
+  padding-right: 18px;
+}
+
+.header__page-menu ul > li:last-child {
+  padding-right: 0px;
+}
+
+.header__services:after,
+.header__agreements:after {
+  display: inline-block;
+  padding-right: 1px;
+  font-family: "icomoon";
+  content: "\ea50";
+  color: #b7b7be;
+
+  z-index: 1;
+  font-size: 20px;
+  transform: rotate(180deg);
 }
 
 .header__signin {
   display: inline-block;
   border: 2px solid #bc9cff;
   border-radius: 22px;
-  padding: 9px 20px 9px 20px;
-  color: #bc9cff;
-  text-transform: uppercase;
+  padding: 6px 18px 6px 18px;
+  margin-right: 16px;
   text-align: center;
+  color: #bc9cff;
+}
+
+.header__signup {
+  display: inline-block;
+  color: white;
+  background-color: #bc9cff;
+  text-align: center;
+  border-radius: 22px;
+  padding: 8px 19px 8px 19px;
+}
+
+.header__signin a,
+.header__signup a {
+  font-family: "Montserrat Bold";
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .header__signin a {
   color: #bc9cff;
-  font-family: "Montserrat Bold";
-  font-size: 12px;
-}
-
-.header__signup {
-  height: 100%;
-  display: inline-block;
-  color: white;
-  background-color: #bc9cff;
-  font-family: "Montserrat Bold";
-  font-size: 12px;
-  text-transform: uppercase;
-  text-align: center;
-  border-radius: 22px;
-  padding: 12px 20px 11px 20px;
 }
 
 .header__signup a {
   color: white;
-  font-family: "Montserrat Bold";
-  font-size: 12px;
 }
 
 .slider {
@@ -122,6 +147,7 @@ li {
   height: 374px;
   top: 70px;
   background-color: white;
+
 }
 
 .slider__text {
@@ -133,7 +159,7 @@ li {
   color: rgba(31, 32, 65, 0.75);
 }
 
-.slider__rooomsearcher label {
+.slider__form label {
   text-transform: uppercase;
   font-family: "Montserrat Bold";
   color: #1f2041;
@@ -141,14 +167,14 @@ li {
   line-height: 15px;
 }
 
-.slider__rooomsearcher input {
+.slider__form input {
   font-family: "Montserrat Regular";
   font-size: 14px;
   line-height: 18px;
   color: rgba(31, 32, 65, 0.75);
 }
 
-.slider__rooomsearcher {
+.slider__form {
   padding: 40px 30px 0 30px;
 }
 
@@ -156,14 +182,15 @@ li {
   display: block;
   font-size: 24px;
   line-height: 30px;
-  font-family: "Montserrat Bold";
+  /* font-family: sans-serif; */
+  font-weight: 900 !important;
   color: #1f2041;
   margin-bottom: 20px;
 }
 
 .form__income input,
 .form__outcome input,
-.form__qua select {
+.form__guest-quantity select {
   width: 150px;
   height: 44px;
   padding-left: 15px;
@@ -173,6 +200,7 @@ li {
   border-radius: 4px;
   margin-top: 5px;
   display: inline-block;
+  appearance: none;
 }
 
 .form__income,
@@ -185,25 +213,52 @@ li {
   float: right;
 }
 
-.clear::after {
+.form__in-out-container::after {
   content: "";
   display: block;
   clear: both;
 }
 
-.form__qua {
-  margin-top: 20px;
-  display: block;
+.form__in-out-container {
+  margin-bottom: 20px;
 }
 
-.form__qua select {
+.form__guest-quantity {
+  display: block;
+  margin-bottom: 31px;
+}
+
+.form__guest-quantity select {
+  position: relative;
   width: 320px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  z-index: 2;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper:after {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  font-family: "icomoon";
+  content: "\ea50";
+  color: #b7b7be;
+
+  z-index: 1;
+  font-size: 30px;
+  transform: rotate(180deg);
 }
 
 .form__submit {
   position: relative;
   box-sizing: border-box;
-  margin: 31px auto 0 auto;
+  margin: 0 auto;
   display: block;
   width: 320px;
   height: 44px;
@@ -220,12 +275,145 @@ li {
   border: none;
 }
 
-
-.form__submit::after{
+.form__submit::after {
   position: absolute;
-  right:14px;
-  top:14px;
-  font-family: 'icomoon';
+  right: 14px;
+  top: 15px;
+  font-family: "icomoon";
   content: "\ea3c";
   font-size: 20px;
+}
+
+.footer__widgets {
+  padding-top: 100px;
+}
+
+.footer__widgets li {
+  padding-top: 22px;
+}
+/* .footer__widgets div {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 17px;
+  padding-top: 20px;
+  border: 1px solid black;
+} */
+
+.footer__adverticement,
+.footer__navigation,
+.footer__about,
+.footer__support,
+.footer__subscribe {
+  font-size: 14px;
+  line-height: 17px;
+  vertical-align: top;
+  float: left;
+}
+
+.footer__adverticement {
+  padding-top: 0;
+}
+
+.footer__navigation h3,
+.footer__about h3,
+.footer__support h3,
+.footer__subscribe h3 {
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+
+.footer__adverticement {
+  max-width: 260px;
+}
+
+.footer__adverticement-text {
+  padding-top: 18px;
+  line-height: 24px;
+}
+
+.footer__navigation {
+  padding-left: 40px;
+}
+
+.footer__about {
+  padding-left: 57px;
+}
+
+.footer__support {
+  padding-left: 92px;
+}
+
+.footer__subscribe {
+  padding-left: 51px;
+  width: 311px;
+  box-sizing: border-box;
+}
+.footer__subscribe-text {
+  padding-top: 19px;
+  line-height: 24px;
+}
+
+.footer__widgets::after {
+  content: "";
+  clear: both;
+  display: block;
+  margin-bottom: 97px;
+}
+
+.footer__copyright {
+  border-top: 1px solid;
+}
+
+.footer__copyright-inner {
+  display: inline-block;
+  padding-top: 27px;
+  margin-bottom: 18px;
+  line-height: 17px;
+}
+
+.footer__media {
+  float: right;
+  padding-top: 23px;
+}
+
+.twitter::before,
+.facebook::before,
+.instagramm::before {
+  display: inline-block;
+  font-family: "icomoon";
+  font-size: 24px;
+  line-height: 23px;
+  padding-left: 17px;
+  background: -webkit-linear-gradient(top, #bc9cff 0%, #8ba4f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* color: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%); */
+
+   /* background-image: -webkit-linear-gradient(left, red, rgba(255, 82, 66, 0) 52%);
+  background-image: -moz-linear-gradient(left center, red, rgba(255, 82, 66, 0) 52%);
+  background-image: -o-linear-gradient(left, red, rgba(255, 82, 66, 0) 52%);
+  background-image: linear-gradient(to right, red, rgba(255, 82, 66, 0) 52%); */
+}
+
+
+.twitter,
+.facebook,
+.instagramm {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 23px;
+  padding-left: 17px;
+}
+
+
+.twitter::before {
+  content: "\ea96";
+}
+.facebook::before {
+  content: "\ea91";
+}
+
+.instagramm::before {
+  content: "\ea92";
 }

@@ -16,8 +16,10 @@
 
 @font-face {
     font-family: "Quicksand Bold";
-    src: url("../fonts/");
-    src: url("../fonts/?#iefix") format("embedded-opentype"), url("../fonts/Quicksand-Bold.woff") format("woff"), url("../fonts/Quicksand-Bold.ttf") format("truetype");
+    src:  url("../fonts/Quicksand-Bold.ttf") format("truetype"),
+     url("../fonts/?#iefix") format("embedded-opentype"), 
+    url("../fonts/Quicksand-Bold.woff") format("woff")
+    ;
     font-weight: normal;
     font-style: normal;
 }

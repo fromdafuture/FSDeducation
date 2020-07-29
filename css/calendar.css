@@ -1,67 +1,127 @@
-.calendar-holder ~ * {
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
 .container {
   display: block;
   width: 600px;
   height: 500px;
   margin: 50px auto;
-
-  border-radius: 10px;
-  background-color: rgba(240, 211, 211, 0.1);
-  box-shadow: 0 4px 16px #ccc;
-  overflow: auto;
+  background: #ffffff;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+  border-radius: 4px;
 }
 
 #calendar-holder {
+  position: relative;
   box-sizing: border-box;
   width: 320px;
   height: 369px;
 
   margin: 50px auto;
   padding-top: 1px;
-  border: 1px solid white;
 
-  border-radius: 10px;
-  background-color: rgba(240, 211, 211, 0.1);
-  box-shadow: 0 4px 16px #ccc;
+  background: #ffffff;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-sizing: border-box;
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+  border-radius: 4px;
 }
 
 .cal-head-holder {
-  border: 1px solid;
-  font-family: sans-serif;
+  font-family: "Quicksand Bold", sans-serif;
+  font-weight: 700;
   font-size: 19px;
   line-height: 24px;
+  color: #1f2041;
+}
+
+.cal-left,
+.cal-right {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  padding: 17px;
+  cursor: pointer;
 }
 
 .cal-left {
   float: left;
-  padding: 20px;
 }
 
 .cal-right {
   float: right;
-  padding: 20px;
 }
 
 .cal-month {
   text-align: center;
-  padding: 20px;
+  padding: 18px;
+}
+
+.table-holder {
+  font-family: "Montserrat Regular", sans-serif;
+  color: rgba(31, 32, 65, 0.5);
+  font-size: 12px;
+  line-height: 15px;
+  padding: 11px 20px 0 20px;
+}
+
+.table-holder::after {
+  display: block;
+  content: " ";
+  clear: both;
 }
 
 .days-table {
-  width: 100%;
+  box-sizing: border-box;
+  width: 101%;
   height: 100%;
   text-align: center;
-  font-family: sans-serif;
-  border: 1px solid;
 }
 
-.days-holder th,
-.days-holder td{
+.th-cell,
+.td-cell {
+  box-sizing: border-box;
+  height: 38px;
+  width: 38px;
+  cursor: pointer;
+}
 
-  height:40px;
+.th-cell {
+  font-family: "Montserrat Bold", sans-serif;
+  color: #bc9cff;
+}
 
+.td-cell-grayed {
+  opacity: 0.5;
+}
+
+.td-cell-today {
+  background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+  border-radius: 22px;
+}
+.cal-clear,
+.cal-submit {
+  font-family: "Montserrat Bold", sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+
+  text-transform: uppercase;
+}
+.bottom-holder {
+  position: relative;
+  border: 1px solid;
+}
+.cal-clear {
+  position: absolute;
+  left: 19px;
+  bottom: 19px;
+  color: rgba(31, 32, 65, 0.5);
+  cursor: pointer;
+}
+.cal-submit {
+  position: absolute;
+  right: 20px;
+  bottom: 19px;
+  color: #bc9cff;
+  cursor: pointer;
 }

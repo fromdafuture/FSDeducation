@@ -98,6 +98,15 @@
   background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
   border-radius: 22px;
 }
+
+.td-cell-inside{
+  background-color: gray;
+}
+
+.td-cell-first{
+  background-color: green;
+}
+
 .cal-clear,
 .cal-submit {
   font-family: "Montserrat Bold", sans-serif;

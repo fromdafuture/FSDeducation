@@ -7,14 +7,19 @@ class DateChooser {
         this.lastDay = curDay;
 
 
+        this.initDivs();
 
-
-        this.redraw();
+        this.render();
     };
 
-    init() {
+    initDivs() {
 
     }
+    
+    render() {
+        let curDay = new Date(2019, 7, 8);
+        this.calendarHolder.innerHTML = this.createMonth(curDay);
+    };
 
     createMonth(monthDate) {
         let curMonthName = monthDate.toLocaleString('ru-RU', { month: 'long' });
@@ -30,7 +35,8 @@ class DateChooser {
         <div class="table-holder">
             <table class="days-table">
                 <tr>
-                    <th class="th-cell">Пн</th><th class="th-cell">Вт</th>
+                    <th class="th-cell">Пн</th>
+                    <th class="th-cell">Вт</th>
                     <th class="th-cell">Ср</th>
                     <th class="th-cell">Чт</th>
                     <th class="th-cell">Пт</th>
@@ -55,10 +61,7 @@ class DateChooser {
         return date.getDate();
     };
 
-    redraw() {
-        let curDay = new Date(2019, 7, 8);
-        this.calendarHolder.innerHTML = this.createMonth(curDay);
-    };
+
 }
 
 
@@ -74,7 +77,7 @@ window.onload = function () {
 
 class DatesGenerator {
     constructor(theDate) {
-        this.firstDate = new Date(2020, 7, 2);
+        this.firstDate = new Date(2020, 6, 29);
         this.lastDate = new Date(2020, 7, 5);
         this.days = [];
         this.genDays(theDate);
@@ -119,10 +122,11 @@ class DatesGenerator {
             return 0;
         if (date > this.firstDate && date < this.lastDate)
             return 3;
-        if (date.getFullYear == this.firstDate.getFullYear && date.getMonth == this.firstDate.getMonth && date.getDate == this.firstDate.getDate)
-            return 1;
-        if (date.getFullYear == this.lastDate.getFullYear && date.getMonth == this.lastDate.getMonth && date.getDate == this.lastDate.getDate)
+        if (checkIfSameDay(date, this.lastDate))
             return 2;
+        if (checkIfSameDay(date, this.firstDate))
+            return 1;
+
     }
 
     render() {
@@ -132,10 +136,8 @@ class DatesGenerator {
             str += "<tr>";
             for (let j = 0; j < 7; j++) {
                 let aDay = this.days[d];
-                str += '<td  class="td-cell ';
+                str += '<td class="td-cell';
 
-                if (!aDay.isInMonth)
-                    str += " td-cell-grayed";
                 if (aDay.isCurrentDay)
                     str += " td-cell-today";
                 if (aDay.isInPeriod == 1)
@@ -144,7 +146,8 @@ class DatesGenerator {
                     str += " td-cell-last";
                 if (aDay.isInPeriod == 3)
                     str += " td-cell-inside";
-
+                if (!aDay.isInMonth)
+                    str += " td-cell-grayed";
                 str += '">'
                 str += aDay.dayString;
                 str += "</td>"
@@ -167,18 +170,21 @@ class Day {
     }
 
     get isCurrentDay() {
-        const today = new Date()
-        return this.date.getDate() == today.getDate() &&
-            this.date.getMonth() == today.getMonth() &&
-            this.date.getFullYear() == today.getFullYear()
+        const today = new Date();
+        return checkIfSameDay(this.date, today);
     }
 
     get dayString() {
         return this.date.getDate().toString();
     }
+
     toString() {
         return this.isCurrentDay ?
             this.isInMonth ? `<b><u> ${this.date.getDate()} </u> </b>` : this.date.getDate() :
             this.isInMonth ? `<b> ${this.date.getDate()} </b>` : this.date.getDate();
     }
+}
+
+let checkIfSameDay = function (day1, day2) {
+    return day1.getFullYear() == day2.getFullYear() && day1.getMonth() == day2.getMonth() && day1.getDate() == day2.getDate();
 }

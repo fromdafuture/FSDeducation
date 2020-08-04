@@ -64,17 +64,18 @@
   padding: 11px 20px 0 20px;
 }
 
-.table-holder::after {
+/* .table-holder::after {
   display: block;
   content: " ";
   clear: both;
-}
+} */
 
 .days-table {
   box-sizing: border-box;
   width: 101%;
   height: 100%;
   text-align: center;
+  border-collapse: collapse;
 }
 
 .th-cell,
@@ -83,15 +84,17 @@
   height: 38px;
   width: 38px;
   cursor: pointer;
+  border: none;
 }
 
 .th-cell {
   font-family: "Montserrat Bold", sans-serif;
   color: #bc9cff;
+  border: none;
 }
 
 .td-cell-grayed {
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 
 .td-cell-today {
@@ -99,13 +102,64 @@
   border-radius: 22px;
 }
 
-.td-cell-inside{
-  background-color: gray;
+.td-cell-inside {
+  position: relative;
 }
 
-.td-cell-first{
-  background-color: green;
+.td-cell-inside:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  opacity: 0.25 !important;
 }
+
+.td-cell-first {
+  position: relative;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  border-radius:22px;
+  opacity: 1;
+}
+
+.td-cell-first:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  opacity: 0.25;
+}
+
+.td-cell-last {
+  position: relative;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  border-radius:22px;
+  opacity: 1;
+}
+
+.td-cell-last:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
+  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  opacity: 0.25;
+}
+
 
 .cal-clear,
 .cal-submit {

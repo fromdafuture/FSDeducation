@@ -61,21 +61,33 @@
   color: rgba(31, 32, 65, 0.5);
   font-size: 12px;
   line-height: 15px;
-  padding: 11px 20px 0 20px;
+  padding: 0px 20px 0 20px;
+  width:300%;
+  margin-left: -100%;
 }
-
-/* .table-holder::after {
-  display: block;
-  content: " ";
-  clear: both;
-} */
 
 .days-table {
   box-sizing: border-box;
-  width: 101%;
+  display: inline-block;
   height: 100%;
   text-align: center;
   border-collapse: collapse;
+  margin-left:100%;
+}
+
+.days-table-insertion{
+display:inline-block;
+
+}
+
+.days-table-moveright{
+margin-left:0 -50% 0 0;
+transition:  margin 2s ease 2s;
+}
+
+.days-table-moveleft{
+  /* margin-left:200%;
+  transition:  margin-left 2s ease; */
 }
 
 #calender__days-hollder {

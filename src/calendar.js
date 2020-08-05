@@ -24,12 +24,12 @@ class DateChooser {
 
     showPreviousMonth(thisobj) {
         thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() - 1);
-        thisobj.render();
+        thisobj.render("left");
     };
 
     showNextMonth(thisobj) {
         thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() + 1);
-        thisobj.render();
+        thisobj.render("right");
     };
 
     initDivs() {
@@ -59,24 +59,34 @@ class DateChooser {
             <div class="cal-submit">Применить</div>`;
     };
 
-    render() {
+    render(leftOrRight) {
         let monthDate = this.monthShown;
+
         let curMonthName = monthDate.toLocaleString('ru-RU', { month: 'long' });
         curMonthName = curMonthName[0].toUpperCase() + curMonthName.slice(1);
         let curMonthYear = monthDate.getFullYear();
-
         this.$monthYearHolder.innerHTML = curMonthName + ` ` + curMonthYear;
 
         let datesGenerator = new DatesGenerator(this.monthShown);
 
-        this.$daysTable.innerHTML = datesGenerator.render(this.monthShown);
+
+
+
+        //this.$daysTable.innerHTML = datesGenerator.render();
+
+        let newEl = document.createElement("div");
+        newEl.innerHTML = datesGenerator.render();
+        newEl.classList.add("days-table-insertion");
+
+        if (leftOrRight == "left") {
+            this.$daysTable.append( newEl);
+        }
+        else {
+            this.$daysTable.prepend(newEl);
+        }
     };
 
-    createMonth() {
 
-        let datesGenerator = new DatesGenerator(this.monthShown);
-        str += datesGenerator.render(this.monthShown);
-    }
 
     getLastDayOfMonth(year, month) {
         let date = new Date(year, month + 1, 0);
@@ -139,7 +149,7 @@ class DatesGenerator {
     }
 
     render() {
-        let str = "<table class='days-table'>";
+        let str = `<table class='days-table'>`;
         let d = 0;
         for (let i = 0; i < 6; i++) {
             str += "<tr>";

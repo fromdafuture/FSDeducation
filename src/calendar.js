@@ -1,36 +1,43 @@
+window.onload = function () {
+    new DateChooser("#calendar-holder");
+}
+
+
 class DateChooser {
-    constructor(CalendarHolder) {
-        this.calendarHolder = CalendarHolder;
+    constructor(calendarHolder) {
         let curDay = new Date();
-        this.monthShown = curDay.getMonth();
+        this.monthShown = curDay;
         this.firstDay = curDay;
         this.lastDay = curDay;
 
+        this.$calendarHolder = document.querySelector(calendarHolder);
 
         this.initDivs();
 
+        this.$monthYearHolder = this.$calendarHolder.querySelector("#calender__month");
+        this.$daysTable = this.$calendarHolder.querySelector("#calendar__days-holder");
+
+        this.$calendarHolder.querySelector("#cal-left").addEventListener("click", () => { this.showPreviousMonth(this) });
+        this.$calendarHolder.querySelector("#cal-right").addEventListener("click", () => { this.showNextMonth(this) });
         this.render();
     };
 
-    initDivs() {
-
-    }
-    
-    render() {
-        let curDay = new Date(2019, 7, 8);
-        this.calendarHolder.innerHTML = this.createMonth(curDay);
+    showPreviousMonth(thisobj) {
+        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() - 1);
+        thisobj.render();
     };
 
-    createMonth(monthDate) {
-        let curMonthName = monthDate.toLocaleString('ru-RU', { month: 'long' });
-        curMonthName = curMonthName[0].toUpperCase() + curMonthName.slice(1);
-        let curMonthYear = monthDate.getFullYear();
+    showNextMonth(thisobj) {
+        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() + 1);
+        thisobj.render();
+    };
 
-        let str = `
+    initDivs() {
+        this.$calendarHolder.innerHTML = `
         <div class="cal-head-holder">
-            <div class="cal-left"><</div>
-            <div class="cal-right">></div>
-            <div class="cal-month">` + curMonthName + ` ` + curMonthYear + `</div>
+            <div id="cal-left"><</div>
+            <div id="cal-right">></div>
+            <div id="calender__month" class="cal-month">Месяц 2025</div>
         </div>
         <div class="table-holder">
             <table class="days-table">
@@ -42,38 +49,40 @@ class DateChooser {
                     <th class="th-cell">Пт</th>
                     <th class="th-cell">Сб</th>
                     <th class="th-cell">Вс</th>
-                </tr>`
-
-        let curDay = new Date();
-        let datesGenerator = new DatesGenerator(curDay);
-        str += datesGenerator.render(curDay);
-
-        str +=
-            `</table> 
+                </tr>
+            </table> 
+            <div id="calendar__days-holder">
+  
+            </div>
             <div> 
             <div class="cal-clear">Очистить</div>
-            <div class="cal-submit">Применить</div>`
-        return str;
+            <div class="cal-submit">Применить</div>`;
+    };
+
+    render() {
+        let monthDate = this.monthShown;
+        let curMonthName = monthDate.toLocaleString('ru-RU', { month: 'long' });
+        curMonthName = curMonthName[0].toUpperCase() + curMonthName.slice(1);
+        let curMonthYear = monthDate.getFullYear();
+
+        this.$monthYearHolder.innerHTML = curMonthName + ` ` + curMonthYear;
+
+        let datesGenerator = new DatesGenerator(this.monthShown);
+
+        this.$daysTable.innerHTML = datesGenerator.render(this.monthShown);
+    };
+
+    createMonth() {
+
+        let datesGenerator = new DatesGenerator(this.monthShown);
+        str += datesGenerator.render(this.monthShown);
     }
 
     getLastDayOfMonth(year, month) {
         let date = new Date(year, month + 1, 0);
         return date.getDate();
     };
-
-
 }
-
-
-var dateChooser;
-
-window.onload = function () {
-
-    let ch = document.getElementById("calendar-holder");
-
-    dateChooser = new DateChooser(ch);
-}
-
 
 class DatesGenerator {
     constructor(theDate) {
@@ -107,14 +116,14 @@ class DatesGenerator {
         }
 
         let curMonthLastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay() - 1;
-        if (curMonthLastDay < 0) curMonthLastDay = 6;
-        if (curMonthLastDay < 6) {
-            for (let i = 1; i < 7 - curMonthLastDay; i++) {
-                let newDate = new Date(date.getFullYear(), date.getMonth() + 1, i);
 
-                this.days.push(new Day(newDate, false, this.checkInPeriod(newDate)));
-            }
+        let daysLeftToFill = 43 - this.days.length;
+
+        for (let i = 1; i < daysLeftToFill; i++) {
+            let newDate = new Date(date.getFullYear(), date.getMonth() + 1, i);
+            this.days.push(new Day(newDate, false, this.checkInPeriod(newDate)));
         }
+
     }
 
     checkInPeriod(date) {
@@ -130,7 +139,7 @@ class DatesGenerator {
     }
 
     render() {
-        let str = "";
+        let str = "<table class='days-table'>";
         let d = 0;
         for (let i = 0; i < 6; i++) {
             str += "<tr>";
@@ -155,7 +164,7 @@ class DatesGenerator {
             }
             str += "</tr>";
         }
-
+        str += "</table>";
         return str;
     }
 

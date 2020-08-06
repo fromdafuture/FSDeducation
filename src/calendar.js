@@ -5,12 +5,12 @@ window.onload = function () {
 
 class DateChooser {
     constructor(calendarHolder) {
+        this.$calendarHolder = document.querySelector(calendarHolder);
+
         let curDay = new Date();
         this.monthShown = curDay;
         this.firstDay = curDay;
         this.lastDay = curDay;
-
-        this.$calendarHolder = document.querySelector(calendarHolder);
 
         this.initDivs();
 
@@ -19,18 +19,49 @@ class DateChooser {
 
         this.$calendarHolder.querySelector("#cal-left").addEventListener("click", () => { this.showPreviousMonth(this) });
         this.$calendarHolder.querySelector("#cal-right").addEventListener("click", () => { this.showNextMonth(this) });
+
+        this.mouseIsDown = false;
+
+        this.$daysTable.addEventListener(
+            "mousemove", e => {
+                let el = e.target;
+                if (el.classList.contains("td-cell")) {
+                    if (this.mouseIsDown) {
+                        let day = el.innerText;
+                        let month = !el.classList.contains("td-cell-grayed") ?
+                            this.monthShown.getMonth() :
+                            (el.parentElement.rowIndex < 3 ? this.monthShown.getMonth() - 1 :
+                                this.monthShown.getMonth() + 1);
+                        let year = this.monthShown.getFullYear();
+                        let aDate = new Date(year, month, day);
+
+                        if (aDate < this.firstDay) this.firstDay = aDate;
+                        else if (aDate > this.lastDay) this.lastDay = aDate;
+                        else if (aDate > this.firstDay && aDate < this.lastDay) {
+                            if (aDate - this.firstDay < this.lastDay - aDate)
+                                this.firstDay = aDate;
+                            else
+                                this.lastDay = aDate;
+
+                        }
+
+
+                        this.render();
+                    }
+                }
+            });
+        this.$daysTable.addEventListener("mousedown",
+            e => { if (e.target.classList.contains("td-cell")) { this.mouseIsDown = true; } });
+
+        this.$daysTable.addEventListener("mouseup",
+            e => { if (e.target.classList.contains("td-cell")) { this.mouseIsDown = false; } });
+
+        this.$daysTable.addEventListener("mouseleave",
+            e => { this.mouseIsDown = false; });
+
         this.render();
     };
 
-    showPreviousMonth(thisobj) {
-        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() - 1);
-        thisobj.render("left");
-    };
-
-    showNextMonth(thisobj) {
-        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() + 1);
-        thisobj.render("right");
-    };
 
     initDivs() {
         this.$calendarHolder.innerHTML = `
@@ -59,6 +90,17 @@ class DateChooser {
             <div class="cal-submit">Применить</div>`;
     };
 
+
+    showPreviousMonth(thisobj) {
+        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() - 1);
+        thisobj.render("left");
+    };
+
+    showNextMonth(thisobj) {
+        thisobj.monthShown = new Date(thisobj.monthShown.getFullYear(), thisobj.monthShown.getMonth() + 1);
+        thisobj.render("right");
+    };
+
     render(leftOrRight) {
         let monthDate = this.monthShown;
 
@@ -67,37 +109,15 @@ class DateChooser {
         let curMonthYear = monthDate.getFullYear();
         this.$monthYearHolder.innerHTML = curMonthName + ` ` + curMonthYear;
 
-        let datesGenerator = new DatesGenerator(this.monthShown);
-
-
-
-
-        //this.$daysTable.innerHTML = datesGenerator.render();
-
-        let newEl = document.createElement("div");
-        newEl.innerHTML = datesGenerator.render();
-        newEl.classList.add("days-table-insertion");
-
-        if (leftOrRight == "left") {
-            this.$daysTable.append( newEl);
-        }
-        else {
-            this.$daysTable.prepend(newEl);
-        }
-    };
-
-
-
-    getLastDayOfMonth(year, month) {
-        let date = new Date(year, month + 1, 0);
-        return date.getDate();
+        let datesGenerator = new DatesGenerator(this.monthShown, this.firstDay,this.lastDay);
+        this.$daysTable.innerHTML = datesGenerator.render();
     };
 }
 
 class DatesGenerator {
-    constructor(theDate) {
-        this.firstDate = new Date(2020, 6, 29);
-        this.lastDate = new Date(2020, 7, 5);
+    constructor(theDate, firstDate, lastDate) {
+        this.firstDate = firstDate;
+        this.lastDate = lastDate;
         this.days = [];
         this.genDays(theDate);
     }
@@ -124,8 +144,6 @@ class DatesGenerator {
 
             this.days.push(new Day(newDate, true, this.checkInPeriod(newDate)));
         }
-
-        let curMonthLastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay() - 1;
 
         let daysLeftToFill = 43 - this.days.length;
 

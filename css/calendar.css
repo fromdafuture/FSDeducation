@@ -62,8 +62,6 @@
   font-size: 12px;
   line-height: 15px;
   padding: 0px 20px 0 20px;
-  width:300%;
-  margin-left: -100%;
 }
 
 .days-table {
@@ -72,7 +70,8 @@
   height: 100%;
   text-align: center;
   border-collapse: collapse;
-  margin-left:100%;
+  user-select:none;
+
 }
 
 .days-table-insertion{
@@ -103,12 +102,18 @@ transition:  margin 2s ease 2s;
   width: 38px;
   cursor: pointer;
   border: none;
+  user-select:none;
 }
 
 .th-cell {
   font-family: "Montserrat Bold", sans-serif;
   color: #bc9cff;
   border: none;
+}
+
+.td-cell:hover{
+  font-weight: bolder;
+  color: #666;
 }
 
 .td-cell-grayed {

@@ -70,23 +70,11 @@
   height: 100%;
   text-align: center;
   border-collapse: collapse;
-  user-select:none;
-
+  user-select: none;
 }
 
-.days-table-insertion{
-display:inline-block;
-
-}
-
-.days-table-moveright{
-margin-left:0 -50% 0 0;
-transition:  margin 2s ease 2s;
-}
-
-.days-table-moveleft{
-  /* margin-left:200%;
-  transition:  margin-left 2s ease; */
+.days-table-insertion {
+  display: inline-block;
 }
 
 #calender__days-hollder {
@@ -102,7 +90,7 @@ transition:  margin 2s ease 2s;
   width: 38px;
   cursor: pointer;
   border: none;
-  user-select:none;
+  user-select: none;
 }
 
 .th-cell {
@@ -111,7 +99,7 @@ transition:  margin 2s ease 2s;
   border: none;
 }
 
-.td-cell:hover{
+.td-cell:hover {
   font-weight: bolder;
   color: #666;
 }
@@ -141,7 +129,9 @@ transition:  margin 2s ease 2s;
   opacity: 0.25 !important;
 }
 
-.td-cell-first {
+.td-cell-first, 
+.td-cell-last,
+.td-cell-single {
   position: relative;
   background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
   border-radius: 22px;
@@ -162,12 +152,6 @@ transition:  margin 2s ease 2s;
   opacity: 0.25;
 }
 
-.td-cell-last {
-  position: relative;
-  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
-  border-radius: 22px;
-  opacity: 1;
-}
 
 .td-cell-last:after {
   content: " ";

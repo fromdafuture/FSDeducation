@@ -7,10 +7,10 @@ class DateChooser {
     constructor(calendarHolder) {
         this.$calendarHolder = document.querySelector(calendarHolder);
 
-        let curDay = new Date();
-        this.monthShown = curDay;
-        this.firstDay = curDay;
-        this.lastDay = curDay;
+        let curDate = new Date();
+        this.monthShown = curDate;
+        this.firstDate = NaN;
+        this.lastDate = NaN;
 
         this.initDivs();
 
@@ -22,46 +22,58 @@ class DateChooser {
 
         this.mouseIsDown = false;
 
-        this.$daysTable.addEventListener(
-            "mousemove", e => {
-                let el = e.target;
-                if (el.classList.contains("td-cell")) {
-                    if (this.mouseIsDown) {
-                        let day = el.innerText;
-                        let month = !el.classList.contains("td-cell-grayed") ?
-                            this.monthShown.getMonth() :
-                            (el.parentElement.rowIndex < 3 ? this.monthShown.getMonth() - 1 :
-                                this.monthShown.getMonth() + 1);
-                        let year = this.monthShown.getFullYear();
-                        let aDate = new Date(year, month, day);
+        this.$daysTable.addEventListener("click", e => this.mouseclick(e));
 
-                        if (aDate < this.firstDay) this.firstDay = aDate;
-                        else if (aDate > this.lastDay) this.lastDay = aDate;
-                        else if (aDate > this.firstDay && aDate < this.lastDay) {
-                            if (aDate - this.firstDay < this.lastDay - aDate)
-                                this.firstDay = aDate;
-                            else
-                                this.lastDay = aDate;
+        this.$daysTable.addEventListener("mousemove", e => this.mousemovement(e));
 
-                        }
-
-
-                        this.render();
-                    }
-                }
-            });
         this.$daysTable.addEventListener("mousedown",
             e => { if (e.target.classList.contains("td-cell")) { this.mouseIsDown = true; } });
 
-        this.$daysTable.addEventListener("mouseup",
-            e => { if (e.target.classList.contains("td-cell")) { this.mouseIsDown = false; } });
+        this.$daysTable.addEventListener("mouseup", () => { this.mouseIsDown = false; });
 
-        this.$daysTable.addEventListener("mouseleave",
-            e => { this.mouseIsDown = false; });
+        this.$daysTable.addEventListener("mouseleave", () => { this.mouseIsDown = false; });
 
         this.render();
     };
 
+    mouseclick(e) {
+        this.mouseIsDown = true;
+        this.mousemovement(e);
+        this.mouseIsDown = false;
+    }
+
+    mousemovement(e) {
+        let el = e.target;
+        if (el.classList.contains("td-cell")) {
+            if (this.mouseIsDown) {
+                let day = el.innerText;
+                let month = !el.classList.contains("td-cell-grayed") ?
+                    this.monthShown.getMonth() :
+                    (el.parentElement.rowIndex < 3 ? this.monthShown.getMonth() - 1 :
+                        this.monthShown.getMonth() + 1);
+                let year = this.monthShown.getFullYear();
+                let aDate = new Date(year, month, day);
+                if (!this.firstDate) {
+                    this.firstDate = aDate;
+                    this.lastDate = aDate;
+                }
+                if (aDate < this.firstDate) this.firstDate = aDate;
+                else if (aDate > this.lastDate) this.lastDate = aDate;
+                else if (aDate > this.firstDate && aDate < this.lastDate) {
+                    if (aDate - this.firstDate < this.lastDate - aDate)
+                        this.firstDate = aDate;
+                    else
+                        this.lastDate = aDate;
+                }
+                this.render();
+            }
+        }
+    }
+
+    clearDays() {
+
+
+    }
 
     initDivs() {
         this.$calendarHolder.innerHTML = `
@@ -109,7 +121,7 @@ class DateChooser {
         let curMonthYear = monthDate.getFullYear();
         this.$monthYearHolder.innerHTML = curMonthName + ` ` + curMonthYear;
 
-        let datesGenerator = new DatesGenerator(this.monthShown, this.firstDay,this.lastDay);
+        let datesGenerator = new DatesGenerator(this.monthShown, this.firstDate, this.lastDate);
         this.$daysTable.innerHTML = datesGenerator.render();
     };
 }
@@ -155,15 +167,18 @@ class DatesGenerator {
     }
 
     checkInPeriod(date) {
+        if (!this.firstDate || !this.lastDate)
+            return 0;
         if (date < this.firstDate || date > this.lastDate)
             return 0;
         if (date > this.firstDate && date < this.lastDate)
             return 3;
-        if (checkIfSameDay(date, this.lastDate))
-            return 2;
+        if (checkIfSameDay(this.firstDate, this.lastDate))
+            return 4;
         if (checkIfSameDay(date, this.firstDate))
             return 1;
-
+        if (checkIfSameDay(date, this.lastDate))
+            return 2;
     }
 
     render() {
@@ -183,6 +198,8 @@ class DatesGenerator {
                     str += " td-cell-last";
                 if (aDay.isInPeriod == 3)
                     str += " td-cell-inside";
+                if(aDay.isInPeriod == 4)
+                    str+= " td-cell-single";
                 if (!aDay.isInMonth)
                     str += " td-cell-grayed";
                 str += '">'
